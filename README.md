@@ -54,6 +54,115 @@ Select "Niri" at the GDM login screen.
 
 ---
 
+## Using in TTY (Command Line Interface)
+
+If you're installing from a fresh Arch Linux TTY (black screen with white text), follow these steps:
+
+### Step 1: Connect to Network
+
+**For Wi-Fi:**
+```bash
+iwctl
+
+# List devices
+[iwd]# device list
+
+# Scan for networks
+[iwd]# station wlan0 scan
+
+# Show available networks
+[iwd]# station wlan0 get-networks
+
+# Connect (replace Your_WiFi_Name)
+[iwd]# station wlan0 connect Your_WiFi_Name
+# Enter password when prompted (characters won't show)
+
+# Exit iwctl
+[iwd]# exit
+```
+
+**For Ethernet:** Just plug in the cable, it should work automatically.
+
+**Test connection:**
+```bash
+ping -c 3 github.com
+```
+
+### Step 2: Download the Script
+
+```bash
+# Go to home directory
+cd ~
+
+# Download script
+curl -O https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+```
+
+If `curl` is not found:
+```bash
+sudo pacman -Sy curl
+```
+
+If SSL error occurs:
+```bash
+curl -kO https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+```
+
+### Step 3: Run the Script
+
+```bash
+# Make executable
+chmod +x install_niri.sh
+
+# Run script
+bash install_niri.sh
+```
+
+### Step 4: Select Installation Type
+
+When the menu appears, press:
+- **`a`** → Install **everything** (recommended for beginners)
+- **`m`** → **Minimal** install (Niri + DMS only)
+- **`1-7`** → Install specific components only
+
+During DMS configuration, select:
+- Window Manager: `niri`
+- Terminal: `kitty`
+
+### Step 5: Reboot
+
+After installation completes:
+```bash
+sudo reboot
+```
+
+At the GDM login screen, select **"Niri"** from the session menu.
+
+### Complete Copy-Paste Version
+
+```bash
+# 1. Connect Wi-Fi (skip if using Ethernet)
+iwctl
+station wlan0 connect Your_WiFi_Name
+exit
+
+# 2. Test network
+ping -c 3 github.com
+
+# 3. Download script
+curl -O https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+
+# 4. Run script
+bash install_niri.sh
+
+# 5. Press 'a' for full installation when prompted
+
+# 6. Reboot when done
+sudo reboot
+```
+
+---
+
 ## What Gets Installed
 
 ### Core Components (Always)
@@ -209,6 +318,116 @@ sudo reboot
 ```
 
 在 GDM 登录界面选择 "Niri" 会话。
+
+---
+
+## 在 TTY 中使用（命令行界面）
+
+如果你是在 Arch Linux 的 TTY（黑底白字的命令行界面）中安装，请按以下步骤操作：
+
+### 第 1 步：连接网络
+
+**Wi-Fi 连接：**
+```bash
+iwctl
+
+# 查看设备名
+[iwd]# device list
+
+# 扫描 Wi-Fi
+[iwd]# station wlan0 scan
+
+# 查看可用网络
+[iwd]# station wlan0 get-networks
+
+# 连接（替换 你的WiFi名称）
+[iwd]# station wlan0 connect 你的WiFi名称
+# 提示输入密码时输入密码（不显示字符）
+
+# 退出 iwctl
+[iwd]# exit
+```
+
+**网线连接：** 直接插入网线即可，通常自动连接。
+
+**测试网络：**
+```bash
+ping -c 3 github.com
+```
+看到回复说明网络正常。
+
+### 第 2 步：下载脚本
+
+```bash
+# 进入 home 目录
+cd ~
+
+# 下载脚本
+curl -O https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+```
+
+如果提示 curl 未找到：
+```bash
+sudo pacman -Sy curl
+```
+
+如果提示 SSL 错误：
+```bash
+curl -kO https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+```
+
+### 第 3 步：运行脚本
+
+```bash
+# 赋予执行权限
+chmod +x install_niri.sh
+
+# 运行脚本
+bash install_niri.sh
+```
+
+### 第 4 步：选择安装类型
+
+显示菜单后输入：
+- **`a`** → 安装**全部**（推荐新手使用）
+- **`m`** → **最小**安装（仅 Niri + DMS）
+- **`1-7`** → 单独安装某个功能
+
+DMS 配置时选择：
+- Window Manager: `niri`
+- Terminal: `kitty`
+
+### 第 5 步：重启
+
+安装完成后：
+```bash
+sudo reboot
+```
+
+在 GDM 登录界面选择 **"Niri"** 会话。
+
+### 完整流程（复制粘贴版）
+
+```bash
+# 1. 连 Wi-Fi（如已插网线可跳过）
+iwctl
+station wlan0 connect WiFi名称
+exit
+
+# 2. 测试网络
+ping -c 3 github.com
+
+# 3. 下载脚本
+curl -O https://raw.githubusercontent.com/Pero369/niri-dms-setup/main/install_niri.sh
+
+# 4. 运行脚本
+bash install_niri.sh
+
+# 5. 按提示选 'a' 安装全部
+
+# 6. 重启
+sudo reboot
+```
 
 ---
 
